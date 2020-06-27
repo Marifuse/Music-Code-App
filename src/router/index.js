@@ -9,9 +9,12 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
-    alias: ['/inicio', '/principal'],
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: Home, // El component llama al componente importado
     meta: {
       requireLogin: true // El meta tiene relación con la función guardia (se representa con una respuesta booleana)
     }
@@ -44,7 +47,7 @@ router.beforeEach((to, from, next) => {
   let user = Firebase.auth().currentUser;
   let authRequired = to.matched.some(route => route.meta.requireLogin)
   if(!user && authRequired) {
-    next('home') 
+    next('login') 
   } else {
     next()
   }
