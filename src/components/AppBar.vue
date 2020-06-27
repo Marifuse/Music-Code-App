@@ -5,7 +5,6 @@
       color="indigo darken-4"
       dark
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
       <v-toolbar-title>♪ Music ~ Code ♪</v-toolbar-title>
 

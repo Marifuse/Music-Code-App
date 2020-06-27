@@ -1,23 +1,20 @@
 <template>
-  <v-app>
-    <app-bar/>
-    <v-content>
+  <div>
+    <v-app>
+      <app-bar/>
       <router-view/>
-    </v-content>
-    <Footer/>
-  </v-app>
+    </v-app>
+  </div>
 </template>
 
 <script>
 import AppBar from './components/AppBar'
-import Footer from './components/Footer'
 
 export default {
   name: 'App',
 
   components: {
-    AppBar,
-    Footer
+    AppBar
   },
 
   data: () => ({
