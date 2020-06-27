@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +9,19 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    alias: ['/inicio', '/principal']
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    alias: ['/autenticacion', '/usuario']
+  },
+  {
+    path: '*', // Este tipo de path con asterisco se usa para generar un not found o error 404
+    name: 'NotFound',
+    component: () => import(/* webpackChunkName:"notfound" */ '../views/NotFound') //Jamas debe ir con espacios
   },
   {
     path: '/about',
