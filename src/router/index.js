@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Firebase from 'firebase'
 import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -14,16 +13,21 @@ Vue.use(VueRouter)
   {
     path: '/home',
     name: 'home',
-    component: Home, // El component llama al componente importado
-    meta: {
-      requireLogin: true // El meta tiene relación con la función guardia (se representa con una respuesta booleana)
-    }
+    component: Home // El component llama al componente importado
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login,
-    alias: ['/autenticacion', '/usuario']
+    alias: ['/autenticacion', '/usuario'],
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue'),
+    meta: {
+      requireLogin: true // El meta tiene relación con la función guardia (se representa con una respuesta booleana)
+    }
   },
   {
     path: '*', // Este tipo de path con asterisco se usa para generar un not found o error 404
@@ -47,7 +51,7 @@ router.beforeEach((to, from, next) => {
   let user = Firebase.auth().currentUser;
   let authRequired = to.matched.some(route => route.meta.requireLogin)
   if(!user && authRequired) {
-    next('login') 
+    next('home') 
   } else {
     next()
   }

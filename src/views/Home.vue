@@ -1,8 +1,9 @@
 <template>
   <div class="home">
       <v-carousel
+        continuous
         cycle
-        class="pt-8"
+        class="pt-2"
       >
         <v-carousel-item
           v-for="(item,i) in items"
@@ -12,15 +13,19 @@
           transition="fade-transition"
         ></v-carousel-item>
       </v-carousel>
-      <div class="text-center">
+      <header class="text-center">
         <h1>♪ Music ~ Code ♪</h1>
         <h4>♫♬ Los Mejores Cursos de Música, los encuentras AQUÍ ♫♬</h4>
-      </div>
+      </header>
+      <section>
+        <course-card/>
+      </section>
     <Footer/>
   </div>
 </template>
 
 <script>
+import CourseCard from '../components/CourseCard'
 import Footer from '../components/Footer'
 
 export default {
@@ -44,6 +49,7 @@ export default {
   },
   name: 'Home',
   components: {
+    CourseCard,
     Footer
   },
 }
