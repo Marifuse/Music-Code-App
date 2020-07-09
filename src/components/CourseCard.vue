@@ -23,13 +23,13 @@ import {mapState, mapActions} from 'vuex'
 export default {
   name:'CourseCard',
   methods:{
-  ...mapActions(['getCourses'])
+  ...mapActions(['setCourses'])
   },
   computed: {
   ...mapState(['courses']),
   },
   created() {
-    this.$store.dispatch('getCourses')
+    this.$store.dispatch('setCourses')
   },
 }
 </script>

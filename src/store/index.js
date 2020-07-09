@@ -8,7 +8,7 @@ const baseUrl = 'https://us-central1-music-133bf.cloudfunctions.net/courses'
 
 function emptyCourse()  {
   return{
-    id: null, data: { name: '', img: '', description:'', examples: { title: '', mp3: '', description: '' } }
+    id: null, data: { name: '', img: '', description:'' }
   }             
 }
 
@@ -21,6 +21,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_CURRENT_USER(state, user) { state.currentUser= user },
+    DISPLAY_COURSE_FORM(state) { state.showForm = true },
     SET_LOADING(state) { state.loading = true },
     UNSET_LOADING(state) { state.loading = false },
     SET_EMPTY_COURSE(state) {
@@ -30,30 +31,79 @@ export default new Vuex.Store({
         state.currentCourse.data[key] = base.data[key]
       })
     },
-    GET_COURSES(state, data){state.courses = data},
-    //CREATE_COURSE(state, data){state.currentCourse = data}
+    SET_COURSES(state, data){state.courses = data},
+    UPDATE_TITLE(state, title) { state.currentCourse.data.title = title },
+    UPDATE_IMG(state, img) { state.currentCourse.data.img = img },
+    UPDATE_DESCRIPTION(state, description) { state.currentCourse.data.description = description },
+    SET_CURRENT_COURSE(state, course) {state.currentCourse = course },
   },
   actions: {
     setCurrentUser({commit}, user) { commit('SET_CURRENT_USER', user) },
-    getCourses({commit}) {
-      axios.get(`${baseUrl}/courses`, {
-        headers: {
-          "Content-type": "text/plain"
-        }
-      })
+    setCourses({commit}) {
+      commit('SET_LOADING')
+      axios.get(`${baseUrl}/courses`)
       .then(response => {
-        commit('GET_COURSES', response.data)
-        console.log(response.data)
+        commit('SET_COURSES', response.data)
+        commit('SET_EMPTY_COURSE')
+      }).finally(() => {
+        commit('UNSET_LOADING')
+      }) 
+    },
+    displayCourseForm({commit}) { commit('DISPLAY_COURSE_FORM') },
+    cancelForm({commit}) { 
+      commit('HIDE_COURSE_FORM')
+      commit('SET_EMPTY_COURSE') 
+    },
+    updateTitle({commit}, title) { commit('UPDATE_TITLE', title) },
+    updateImg({commit}, img) { commit('UPDATE_IMG', img) },
+    updateDescription({commit}, description) { commit('UPDATE_DESCRIPTION', description) },
+    postCourse({state, dispatch}) {
+      axios.post(`${baseUrl}/course`, state.currentCourse.data)
+      .then(() => {
+        dispatch('setCourses')
       })
     },
-    postCourse({state, dispatch, commit}){
-      axios.post(`${baseUrl}/product`, state.currentCourse.data)
+    updateCourse({dispatch, state}, id) {
+      axios.put(`${baseUrl}/course/${id}`, state.currentCourse.data)
       .then(() => {
-        commit('SET_EMPTY_COURSE')
-        dispatch('getCourses')
+        dispatch('setCourses')
+      })
+    },
+    deleteCourse({dispatch}, id) {
+      axios.delete(`${baseUrl}/course/${id}`)
+      .then(() => {
+        dispatch('setCourses')
+      })
+    },
+    setCurrentCourse({commit}, id) {
+      axios.get(`${baseUrl}/course/${id}`)
+      .then((response) => {
+        commit('SET_CURRENT_COURSE', response.data)
       })
     }
-  },
-  modules: {
-  }
+  } 
 })
+
+  //   setCurrentCourse({commit, getters}, id) {
+  //     // Vamos a buscar el producto en la API
+  //     // buscar si tenemos el producto en la lista actual
+  //     let targetCourse = getters.searchProductById(id)
+  //     if (targetCourse) {
+  //       // si se encuentra, actualizar el currentProduct con esos datos
+  //       commit('SET_CURRENT_COURSE', targetCourse)
+  //     } else {
+  //       // Si no, llamar al axios
+  //       axios.get(`${baseUrl}/course/${id}`)
+  //       .then((response) => {
+  //         commit('SET_CURRENT_COURSE', response.data)
+  //       })
+  //     }  
+  //   },
+  // },
+  // getters: {
+  //   searchProductById: (state) => (id) => {
+  //     return state.courses.find((course) => {
+  //       return course.id == id
+  //     })
+  //   }
+  // }
