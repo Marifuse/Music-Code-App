@@ -9,14 +9,12 @@
       <v-toolbar-title>♪ Music ~ Code ♪</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <router-link to="/admin">
-        <v-btn
-          text
-        >
-          <span class="mr-2">Admin~♪</span> 
-        </v-btn>
-      </router-link>
-
+      <v-btn
+        text
+        to="/admin"
+      >
+        <span>Admin~♪</span> 
+      </v-btn>
       <v-btn
         text
         @click="logout"
