@@ -6,7 +6,7 @@ This work is about a page that sells japanese animation products. Its functional
 
 To see other projects, you can go to the link https://github.com/Marifuse
 
-_Keywords: Vue, Vue Router, VUEX, Testing, Firebase, Framework, Bulma, CSS, JavaScript, HTML, Git, Repository._
+_Keywords: Vue, Vue Router, VUEX, Testing, Firebase, Framework, Vuetify, CSS, JavaScript, HTML, Git, Repository._
 
 ## Page View
 
@@ -59,7 +59,7 @@ npm run lint
 
 ## Link Deploy Hosting
 
-[Music Code Project](https://https://music-133bf.web.app).
+[Music Code Project](https://music-133bf.web.app).
 
 
 ### Customize configuration
