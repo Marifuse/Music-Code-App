@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home home__container">
       <v-carousel
         continuous
         cycle
@@ -13,7 +13,7 @@
           transition="fade-transition"
         ></v-carousel-item>
       </v-carousel>
-      <header class="text-center">
+      <header class="text-center header__container">
         <h1>♪ Music ~ Code ♪</h1>
         <h4>♫♬ Los Mejores Cursos de Música, los encuentras AQUÍ ♫♬</h4>
       </header>
@@ -54,3 +54,16 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.home__container {
+  background-color: aliceblue;
+}
+// Cabecera
+.header__container {
+  background-color: #FFF;
+  padding: 2em;
+  text-shadow: 3px 3px 2px rgb(160, 174, 255);
+  color: darkblue;
+} 
+</style>

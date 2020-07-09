@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text-center mt-5">Nuestros Cursos</h1>
+    <h1 class="text-center mt-5" id="title__card">Nuestros Cursos</h1>
     <v-row>
       <v-col v-for="course in courses" :key=course.id cols="12" lg="4" md="6">
         <v-card class="pa-2 mt-5">
@@ -35,5 +35,7 @@ export default {
 </script>
 
 <style>
-
+#title__card {
+  color: darkblue;
+}
 </style>
