@@ -8,7 +8,7 @@ const baseUrl = 'https://us-central1-music-133bf.cloudfunctions.net/courses'
 
 function emptyCourse()  {
   return{
-    id: null, data: { name: '', img: '', description:'' }
+    id: null, data: { title: '', img: '', description:'' }
   }             
 }
 
@@ -75,35 +75,33 @@ export default new Vuex.Store({
         dispatch('setCourses')
       })
     },
-    setCurrentCourse({commit}, id) {
-      axios.get(`${baseUrl}/course/${id}`)
-      .then((response) => {
-        commit('SET_CURRENT_COURSE', response.data)
-      })
+    setCurrentCourse({commit, getters}, id) {
+      // Vamos a buscar el producto en la API
+      // buscar si tenemos el producto en la lista actual
+      let targetCourse = getters.searchProductById(id)
+      if (targetCourse) {
+        // si se encuentra, actualizar el currentProduct con esos datos
+        commit('SET_CURRENT_COURSE', targetCourse)
+      } else {
+        // Si no, llamar al axios
+        axios.get(`${baseUrl}/course/${id}`)
+        .then((response) => {
+          commit('SET_CURRENT_COURSE', response.data)
+          })
+        }  
+      },
+    },
+    getters: {
+      searchProductById: (state) => (id) => {
+        return state.courses.find((course) => {
+          return course.id == id
+        })
+      }
     }
-  } 
-})
-
-  //   setCurrentCourse({commit, getters}, id) {
-  //     // Vamos a buscar el producto en la API
-  //     // buscar si tenemos el producto en la lista actual
-  //     let targetCourse = getters.searchProductById(id)
-  //     if (targetCourse) {
-  //       // si se encuentra, actualizar el currentProduct con esos datos
-  //       commit('SET_CURRENT_COURSE', targetCourse)
-  //     } else {
-  //       // Si no, llamar al axios
-  //       axios.get(`${baseUrl}/course/${id}`)
-  //       .then((response) => {
-  //         commit('SET_CURRENT_COURSE', response.data)
-  //       })
-  //     }  
-  //   },
-  // },
-  // getters: {
-  //   searchProductById: (state) => (id) => {
-  //     return state.courses.find((course) => {
-  //       return course.id == id
-  //     })
-  //   }
-  // }
+  })  
+    // setCurrentCourse({commit}, id) {
+    //   axios.get(`${baseUrl}/course/${id}`)
+    //   .then((response) => {
+    //     commit('SET_CURRENT_COURSE', response.data)
+    //   })
+    // }

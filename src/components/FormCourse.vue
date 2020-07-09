@@ -8,8 +8,8 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="pink darken-1" dark @click="submitForm">{{ !!currentCourse.id ? 'Actualizar' : 'Crear' }}</v-btn>
-        <v-btn color="purple darken-4" dark @click="cancelForm">Cancelar</v-btn>
+        <v-btn color="indigo darken-1" dark @click="submitForm">{{ !!currentCourse.id ? 'Actualizar' : 'Crear' }}</v-btn>
+        <v-btn color="pink darken-1" dark @click="cancelForm">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
   </div>

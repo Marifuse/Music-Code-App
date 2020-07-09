@@ -16,9 +16,9 @@
             <td>{{ c.data.title }}</td>
             <td><img :src="c.data.img" class="img-table"></td>
             <td>{{ c.data.description }}</td>
-            <td class="d-flex mt-5">
-              <v-btn color="pink darken-1" fab small dark @click="editCourse(c.id)"><v-icon>mdi-pencil</v-icon></v-btn>
-              <v-btn class='mx-2' color="purple darken-4" fab small dark @click="removeCourse(c.id)"><v-icon>mdi-delete</v-icon></v-btn>
+            <td class="d-flex mt-4">
+              <v-btn color="indigo darken-1" fab small dark @click="editCourse(c.id)"><v-icon>mdi-pencil</v-icon></v-btn>
+              <v-btn class='mx-2' color="pink darken-1" fab small dark @click="removeCourse(c.id)"><v-icon>mdi-delete</v-icon></v-btn>
             </td>
           </tr>
         </tbody>
