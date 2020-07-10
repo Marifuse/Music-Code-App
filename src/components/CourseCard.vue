@@ -10,7 +10,7 @@
         </v-card-text>
         <v-card-text class="text--primary">
           <div>{{ course.data.description }}</div>
-          <div class="text-center mt-3"><v-btn rounded color="primary" dark>Ejemplos</v-btn></div>
+          <div class="text-center mt-3"><v-btn rounded color="primary" dark  :to="{ name: 'course', params:{ name: course.link}}">Ejemplos</v-btn></div>
         </v-card-text>
         </v-card>
       </v-col>

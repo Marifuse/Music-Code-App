@@ -16,6 +16,11 @@ Vue.use(VueRouter)
     component: Home // El component llama al componente importado
   },
   {
+    path: '/course/:name',
+    name: 'course',
+    component: () => import(/* webpackChunkName: "course" */ '../views/Course.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     alias: ['/autenticacion', '/usuario'],

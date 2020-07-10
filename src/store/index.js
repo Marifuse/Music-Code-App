@@ -80,7 +80,7 @@ export default new Vuex.Store({
       // buscar si tenemos el producto en la lista actual
       let targetCourse = getters.searchProductById(id)
       if (targetCourse) {
-        // si se encuentra, actualizar el currentProduct con esos datos
+        // si se encuentra, actualizar con esos datos
         commit('SET_CURRENT_COURSE', targetCourse)
       } else {
         // Si no, llamar al axios
