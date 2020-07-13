@@ -15,9 +15,9 @@ export default {
 
 <style>
 .error__404 {
-  width: 40em;
+  width: 30em;
   display: block;
   margin: auto;
-  margin-top: 2em;
+  margin-top: 5em;
 }
 </style>
