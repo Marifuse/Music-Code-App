@@ -4,7 +4,7 @@
       <h1 class="text-center mb-5">Ingrese un Nuevo Curso Aquí</h1>
         <v-text-field label="Nombre del Curso" type="text" :value="currentCourse.data.title" @input="updateTitle" outlined color="indigo darken-4"/>
         <v-text-field label="URL de la Imagen" type="text" :value="currentCourse.data.img" @input="updateImg" outlined color="indigo darken-4"/>
-        <v-text-field label="Descripción" :value="currentCourse.data.description" @input="updateDescription" outlined color="indigo darken-4"/>
+        <v-textarea label="Descripción" auto-grow :value="currentCourse.data.description" @input="updateDescription" outlined color="indigo darken-4"/>
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
