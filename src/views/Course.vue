@@ -7,8 +7,8 @@
         <v-col cols="12" sm="6" md="4" v-for="example in currentCourse.examples" :key="example.id">
           <v-card outlined>
             <v-card-text class="pb-0">
-              <p class="pa-0 text-h5 font-weight-bold">{{example.data.title}}</p>
-              <p class="text--primary text-caption">{{example.data.description}}</p>
+              <p class="pa-0 text-h5 font-weight-bold">{{example.data.examples.title}}</p>
+              <p class="text--primary text-caption">{{example.data.examples.description}}</p>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>

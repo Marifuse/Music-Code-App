@@ -8,7 +8,7 @@ const baseUrl = 'https://us-central1-music-133bf.cloudfunctions.net/courses'
 
 function emptyCourse()  {
   return{
-    id: null, data: { title: '', img: '', description:'' }
+    id: null, data: { title: '', img: '', description: '', examples: { title: '', mp3: '', description: '' } }
   }             
 }
 
